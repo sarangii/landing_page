@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk to Us - Belong</title>
+    <style>
+        body {
+            background-color: #d4c6a5; /* Matches the beige background from the original */
+            font-family: Arial, sans-serif;
+            color: #1f1f1f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .talk-to-us-button {
+            background-color: #ffcc66; /* Colour to match the original button */
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1f1f1f;
+            cursor: pointer;
+            margin-top: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .talk-to-us-button:hover {
+            background-color: #e6b84c;
+        }
+        .description {
+            text-align: center;
+            max-width: 600px;
+            margin-top: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            color: #0d424a;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #0d424a;
+        }
+        input[type="text"], textarea, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .inline-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .inline-group .form-group {
+            width: 48%;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .close-button {
+            background-color: #ffcc66;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1f1f1f;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .close-button:hover {
+            background-color: #e6b84c;
+        }
+        .submit-button {
+            background-color: #00c853;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #00b248;
+        }
+    </style>
+</head>
+<body>
+    <button class="talk-to-us-button" onclick="openFormModal()">Talk to Us</button>
+    <div class="description">
+        Talk to our advisors on personal finance. We will recommend best of the financial products for your needs even if you do not buy our products. No pushy salesmanship or spam calls. We promise!
+    </div>
+
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <form>
+                <div class="form-group">
+                    <label for="query">Please tell us what your query is about:</label>
+                    <select id="query" name="query" multiple>
+                        <option value="fd">FD related products</option>
+                        <option value="stock">Stock market related products</option>
+                        <option value="insurance">Insurance related products</option>
+                        <option value="general">General query about personal finance</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resident-status">What is your resident status?</label>
+                    <select id="resident-status" name="resident-status">
+                        <option value="uae-nri">UAE based NRI</option>
+                        <option value="other-nri">NRI based out of other countries than UAE</option>
+                        <option value="moving-abroad">Will move abroad in the next 6 months or less</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your Name">
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp Number:</label>
+                    <input type="text" id="whatsapp" name="whatsapp" placeholder="+91">
+                </div>
+                <div class="form-group">
+                    <label for="details">Tell us about your query:</label>
+                    <textarea id="details" name="details" placeholder="Please describe your query in detail"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="source">How did you get to know about Belong?</label>
+                    <select id="source" name="source">
+                        <option value="google">Google</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointment">Select Date and Time:</label>
+                    <input type="datetime-local" id="appointment" name="appointment" min="08:00" max="20:00" step="1800">
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+                <button type="button" class="close-button" onclick="closeFormModal()">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openFormModal() {
+            document.getElementById('formModal').style.display = 'flex';
+        }
+        function closeFormModal() {
+            document.getElementById('formModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
